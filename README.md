@@ -1,2 +1,1 @@
-# CF_sol
-
+CodeFroces Solution
