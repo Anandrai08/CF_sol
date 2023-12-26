@@ -1,2 +1,2 @@
-# leetcode_sol
+# CF_sol
 
