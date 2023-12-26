@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, q;
+        cin >> n >> q;
+
+        vector<int> candies(n);
+
+        for (int i = 0; i < n; i++) {
+            cin >> candies[i];
+        }
+
+        sort(candies.rbegin(), candies.rend());
+
+        vector<long long> prefixSum(n + 1, 0);
+
+        for (int i = 0; i < n; i++) {
+            prefixSum[i + 1] = prefixSum[i] + candies[i];
+        }
+
+        for (int i = 0; i < q; i++) {
+            int x;
+            cin >> x;
+
+            int left = 0, right = n;
+            int result = -1;
+
+            while (left <= right) {
+                int mid = (left + right) / 2;
+
+                if (prefixSum[mid] >= x) {
+                    result = mid;
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+
+            if (result != -1) {
+                cout << result << endl;
+            } else {
+                cout << -1 << endl;
+            }
+        }
+    }
+
+    return 0;
+}
